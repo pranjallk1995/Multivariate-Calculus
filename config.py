@@ -1,0 +1,3 @@
+# constants
+GRID_SIZE = 1.5
+VECTOR_SELECTION = 0.1
