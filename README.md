@@ -1,7 +1,11 @@
 # Multivariate-Calculus
 
-![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/7f398561-1e56-4378-93a7-af30da66cc24)
+## Loss Function
 
-# Gradient Directions
+![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/ad7d19bb-f9b1-4107-bc74-25c43b229ca6)
 
-![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/a53fbe9c-af01-4af3-89d6-c50129c10a5e)
+
+## Gradient Field
+
+![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/5f97fc76-0567-4854-8138-5b0db791cf67)
+
