@@ -72,7 +72,8 @@ class Plot():
                             u=[gradient_values[selected_vector_row][selected_vector_col][0]],
                             v=[gradient_values[selected_vector_row][selected_vector_col][1]],
                             w=[0],
-                            showscale=False, showlegend=False, anchor="tip", sizemode="absolute", colorscale="Teal", name="Gradient Direction"
+                            sizeref=cfg.CONE_SCALE,  sizemode="scaled",
+                            showscale=False, showlegend=False, anchor="tip", colorscale="Teal", name="Gradient Direction"
                         )
                     )
         return gradient_vector_cones
