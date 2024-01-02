@@ -10,11 +10,12 @@ class Loss():
  
     def loss_function(self) -> np.ndarray:
 
-        # loss = -cos(w_1)-cos(w_2)
+        # loss = -cos(w_1)-cos(w_2): gradients point outwards since convex.
+        # loss = -(-cos(w_1)-cos(w_2)): gradients point inwards since concave.
         loss_values = np.zeros((self.weight_1.shape[0], self.weight_2.shape[0]))
         for row, weight_1_value in enumerate(self.weight_1):
             for col, weight_2_value in enumerate(self.weight_2):
-                loss_values[row][col] = -(np.cos(weight_1_value) + np.cos(weight_2_value))
+                loss_values[row][col] = np.cos(weight_1_value) + np.cos(weight_2_value)
 
         return loss_values
 
@@ -23,18 +24,22 @@ class Gradient():
     def __init__(self) -> None:
         pass
 
-    def calulate_gradient(self, input_value_1: np.ndarray, input_value_2: np.ndarray) -> np.ndarray:
-        gradient_values = np.zeros((input_value_1.shape[0], input_value_2.shape[0], 2))
+    def calulate_gradient(self, input_value_1: np.ndarray, input_value_2: np.ndarray) -> list:
+        gradient_data = []
 
         # gradient about input_dimension_1
         # gradient_1(loss) = sin(w_1)
         # gradient_2(loss) = sin(w_2)
-        for row, value_1 in enumerate(input_value_1):
-            for col, value_2 in enumerate(input_value_2):
-                gradient_values[row][col][0] = np.sin(value_1)
-                gradient_values[row][col][1] = np.sin(value_2)
+        for value_1 in input_value_1:
+            for value_2 in input_value_2:
+                gradient_data_values = {}
+                gradient_data_values["x_cord"] = value_1
+                gradient_data_values["y_cord"] = value_2
+                gradient_data_values["gradient_x_cord"] = -np.sin(value_1)
+                gradient_data_values["gradient_y_cord"] = -np.sin(value_2)
+                gradient_data.append(gradient_data_values)
 
-        return gradient_values
+        return gradient_data
 
 class Plot():
 
@@ -54,24 +59,24 @@ class Plot():
             name="Input Space", opacity=0.25, showlegend=False, showscale=False
         )
     
-    def plot_gradient_field(self, gradient_values: np.ndarray) -> list:
+    def plot_gradient_field(self, gradient_data: list) -> list:
         gradient_vector_cones = []
-        for selected_vector_row in range(gradient_values.shape[0]):
-            for selected_vector_col in range(gradient_values.shape[1]):
-                if -cfg.VECTOR_SELECTION < gradient_values[selected_vector_row][selected_vector_col][0] < cfg.VECTOR_SELECTION \
-                    and -cfg.VECTOR_SELECTION < gradient_values[selected_vector_row][selected_vector_col][1] < cfg.VECTOR_SELECTION:
-                    gradient_vector_cones.append(
-                        go.Cone(
-                            x=[gradient_values[selected_vector_row][selected_vector_col][0]],
-                            y=[gradient_values[selected_vector_row][selected_vector_col][1]],
-                            z=[0],
-                            u=[gradient_values[selected_vector_row][selected_vector_col][0]],
-                            v=[gradient_values[selected_vector_row][selected_vector_col][1]],
-                            w=[0],
-                            sizeref=cfg.CONE_SCALE,  sizemode="scaled",
-                            showscale=False, showlegend=False, anchor="tip", colorscale="Teal", name="Gradient Direction"
-                        )
+        for gradient_data_value in gradient_data:
+            if -cfg.VECTOR_SELECTION < gradient_data_value["x_cord"] < cfg.VECTOR_SELECTION \
+                and -cfg.VECTOR_SELECTION < gradient_data_value["y_cord"] < cfg.VECTOR_SELECTION:
+                gradient_vector_cones.append(
+                    go.Cone(
+                        x=[gradient_data_value["x_cord"]],
+                        y=[gradient_data_value["y_cord"]],
+                        z=[0],
+                        u=[gradient_data_value["gradient_x_cord"]],
+                        v=[gradient_data_value["gradient_y_cord"]],
+                        w=[0],
+                        sizeref=cfg.CONE_SCALE,  sizemode="scaled",
+                        showscale=False, showlegend=False, anchor="tip", colorscale="Teal", name="Gradient Direction"
                     )
+                )
+
         return gradient_vector_cones
 
     def plot_3d_diagram(self, loss_function: go.Surface, input_space: go.Surface, gradient_field: list) -> None:
@@ -81,7 +86,7 @@ class Plot():
             scene={
                 "xaxis_title": "Weight 1 (w_1)",
                 "yaxis_title": "Weight 2 (w_2)",
-                "zaxis_title": "Loss = -cos(w_1)-cos(w_2)"
+                "zaxis_title": "Loss = cos(w_1)+cos(w_2)"
             }
         )
         fig.write_html("loss_function_graph.html")
