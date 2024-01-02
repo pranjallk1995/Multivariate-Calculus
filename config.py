@@ -1,4 +1,0 @@
-# constants
-GRID_SIZE = 1.5
-CONE_SCALE = 0.07
-VECTOR_SELECTION = 0.7
