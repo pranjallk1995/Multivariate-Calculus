@@ -27,9 +27,6 @@ class Gradient():
     def calulate_gradient(self, x_values: np.ndarray, y_values: np.ndarray) -> np.ndarray:
         gradient_data = []
 
-        # gradient about input_dimension_1
-        # gradient_1(loss) = sin(w_1)
-        # gradient_2(loss) = sin(w_2)
         for x_value in x_values:
             for y_value in y_values:
                 if round(x_value*10, 0)%2 and round(y_value*10, 0)%2:
@@ -69,12 +66,12 @@ class Plot():
                     go.Cone(
                         x=[gradient_data_value["x_cord"]],
                         y=[gradient_data_value["y_cord"]],
-                        z=[cfg.INPUT_SPACE_OFFSET*1],
+                        z=[cfg.INPUT_SPACE_OFFSET],
                         u=[gradient_data_value["gradient_x_cord"]*cfg.CONE_SCALE],
                         v=[gradient_data_value["gradient_y_cord"]*cfg.CONE_SCALE],
                         w=[0],
-                        sizeref=cfg.CONE_SCALE,  sizemode="scaled",
-                        showscale=False, showlegend=False, anchor="tip", colorscale="Teal", name="Gradient Direction"
+                        sizeref=cfg.CONE_SCALE,  sizemode="scaled", showscale=False, showlegend=False,
+                        anchor="tip", colorscale="Teal", name="Gradient Direction"
                     )
                 )
 
