@@ -28,16 +28,12 @@ class Gradient():
 
         # gradient about input_dimension_1
         # gradient_1(loss) = sin(w_1)
-        for row, value_1 in enumerate(input_value_1):
-            for col, value_2 in enumerate(input_value_2):
-                gradient_values[row][col][0] = np.sin(value_1)
-
-        # gradient about input_dimension_2
         # gradient_2(loss) = sin(w_2)
         for row, value_1 in enumerate(input_value_1):
             for col, value_2 in enumerate(input_value_2):
+                gradient_values[row][col][0] = np.sin(value_1)
                 gradient_values[row][col][1] = np.sin(value_2)
-        
+
         return gradient_values
 
 class Plot():
