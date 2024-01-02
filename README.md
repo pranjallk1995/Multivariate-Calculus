@@ -11,9 +11,8 @@
 
 ## Loss Function: $cos(w_1)+cos(w_2)$
 
-![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/bfa1d610-c0d8-450d-8206-abc771e88807)
+![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/2b849cba-c10a-4e38-994f-f4872f0a0682)
 
 ## Gradient Field:
 
-![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/9be5fead-754c-42aa-b113-9ff99ff0512c)
-
+![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/b32ffc28-f87b-460f-8444-13f6efd25d5b)
