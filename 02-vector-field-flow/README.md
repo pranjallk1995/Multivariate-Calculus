@@ -2,8 +2,10 @@
 
 ## Loss Function: $(x^2+y^2)^2-16x^2+2y^2$
 
-![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/67a260ed-5188-4d6c-ba7f-84044eb4b89e)
+![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/b8657e35-5f23-431b-ae8d-f7e619896f26)
+
 
 ## Flow movement:
 
-![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/5b0787db-749e-4a62-a2cd-0bfb56cb16d6)
+![image](https://github.com/pranjallk1995/Multivariate-Calculus/assets/22261236/273683e1-9d0e-48da-95f0-8134b7c0f1a9)
+
