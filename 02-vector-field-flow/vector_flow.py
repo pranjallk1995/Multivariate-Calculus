@@ -16,8 +16,9 @@ class LemniscateField():
     def lemniscate_function(self) -> np.ndarray:
         for row, x_cord in enumerate(self.x_cords):
             for col, y_cord in enumerate(self.y_cords):
-                self.lemniscate_values[row][col] = np.power(np.power(x_cord, 2) + np.power(y_cord, 2), 2) \
+                self.lemniscate_values[row, col] = np.power(np.power(x_cord, 2) + np.power(y_cord, 2), 2) \
                     - cfg.C*np.power(x_cord, 2) - cfg.D*np.power(y_cord, 2)
+        self.lemniscate_values = np.transpose(self.lemniscate_values)
 
 class Gradient():
 
@@ -39,7 +40,7 @@ class AnimateParticles():
             ]
         )
 
-    def calulate_flow(self, gradient_obj: Gradient) -> list[go.Figure]:
+    def calulate_flow_and_plot(self, gradient_obj: Gradient) -> list[go.Figure]:
         figs = []
         for _ in range(cfg.NUMBER_OF_ITERATIONS):
             trace = go.Scatter(
@@ -47,10 +48,10 @@ class AnimateParticles():
             )
             fig = go.Figure([trace])
             fig.update_layout(
-                title="Particle Flow in Gradient Field", template="plotly_dark", xaxis_title="X-axis", yaxis_title="Y-axis",
-                xaxis={"tickmode": "linear", "tick0": -3, "dtick": 0.5},
-                yaxis={"tickmode": "linear", "tick0": -3, "dtick": 0.5}
-            )
+                title="Particle Flow opposite to Gradient Field", template="plotly_dark", xaxis_title="X-axis", yaxis_title="Y-axis",
+                # xaxis={"tickmode": "array", "tickvals": np.arange(-cfg.X_PARTICLE_GRID_SIZE, cfg.X_PARTICLE_GRID_SIZE, 0.5)},
+                # yaxis={"tickmode": "array", "tickvals": np.arange(-cfg.Y_PARTICLE_GRID_SIZE, cfg.Y_PARTICLE_GRID_SIZE, 0.5)}
+            ), 0.5
             figs.append(fig)
             for index, particle in enumerate(self.particle_grid):
                 particle_x_gradient, particle_y_gradient = gradient_obj.calulate_gradient(particle[0], particle[1])
@@ -166,7 +167,8 @@ if __name__ == "__main__":
     )
 
     animation_obj = AnimateParticles()
-    all_figs = animation_obj.calulate_flow(gradient_obj)
+    with st.spinner("Calculating all Figures"):
+        all_figs = animation_obj.calulate_flow_and_plot(gradient_obj)
 
     placeholder = st.empty()
     start_button = st.button("Start Animation", type="primary")
