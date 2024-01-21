@@ -173,7 +173,8 @@ if __name__ == "__main__":
     placeholder = st.empty()
     start_button = st.button("Start Animation", type="primary")
     if start_button:
-        for fig in all_figs:
-            with placeholder.container():
-                st.plotly_chart(fig, use_container_width=True)
-                time.sleep(0.1)
+        while True:
+            for fig in all_figs:
+                with placeholder.container():
+                    st.plotly_chart(fig, use_container_width=True)
+                    time.sleep(0.1)
