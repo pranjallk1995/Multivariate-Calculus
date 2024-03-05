@@ -43,7 +43,7 @@ ReLU:
 
 y = np.maximum(0, x)
 
-Goal: Helps solve the vanishing gradient
+Goal: Helps solve the vanishing gradient problem along with keeping non linearity
 
 """
 
