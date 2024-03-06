@@ -16,7 +16,7 @@ Stochastic Gradient Descent
 
 weights = weights - learning_rate * d(Loss function at point i) | for all the datapoints i
 
-Goal: To reach the local minima in the loss function much faster as it starts updating the weights one point of a small batch at a time.
+Goal: To reach the local minima in the loss function much faster as it starts updating the weights one point or a small batch at a time.
 
 """
 
