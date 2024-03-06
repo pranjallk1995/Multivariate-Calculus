@@ -34,8 +34,4 @@ L = np.square(actual - predicted)
 actual = np.asarray([0, 0, 1])
 predicted = np.asarray([0.2, 0.25, 0.55])
 
-LM = np.square(actual - predicted)
-
-print(LB)
-print(LC)
-print(LM)
+LM = np.sum(np.square(actual - predicted)) * (1/len(actual))
