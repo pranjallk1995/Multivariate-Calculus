@@ -39,6 +39,8 @@ Note: Useful for spase data, but that means d(Loss function) can become very lar
 
 """
 
+# ========================================================
+
 """
 Adadelta
 
