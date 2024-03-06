@@ -3,6 +3,8 @@ import tensorflow as tf
 from typing import Tuple
 from prettytable import PrettyTable
 
+# IN PROGRESS
+
 def ground_truth() -> Tuple[list, list, list, list]:
 
     sentences = [
